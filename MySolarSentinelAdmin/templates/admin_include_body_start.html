@@ -1,0 +1,62 @@
+
+<body>
+
+<header id="header" class="header bg-blue">
+    <div class="container" id="top">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="header__logo pull-left">
+
+                    <a href="/" class="header__logo-link">
+                            <h1>MySolarSentinel</h1>
+                        
+                    </a>
+                </div>
+                
+                <div class="pull-right">
+                    <div>
+                        <a href="/accounts/logout/" class="header__sign-out btn btn-primary">
+                            Sign Out
+                            <i class="glyphicon glyphicon-log-out"></i>
+                        </a>
+                    </div>
+
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</header>
+<main class="content" aria-labelledby="mainContentLabel">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2 col-sm-12">
+
+                <div class="main-container-sidebar">
+                    <div class="avatar">
+                        <img src="{{ STATIC_URL }}img/avatar__image.png" alt="" class="avatar__image visible-lg-block">
+                        
+                            <div class="avatar__name"><br class="visible-lg-block"><h2>Admin</h2></div>
+                    </div>
+
+                    
+                    <ul class="nav__list">
+                        
+                            <li class="nav__item active">
+                                <a href="/page/admin/" class="nav__link">
+                                    <i class="glyphicon glyphicon-home"></i>
+                                    Customers
+                                </a>
+                            </li>
+                            <li class="nav__item">
+                                <a href="/page/admin/support_tickets/" class="nav__link">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                    OpenTickets
+                                </a>
+                            </li>
+                        
+                    </ul>
+                    
+                </div>
+
+            </div>

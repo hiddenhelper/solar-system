@@ -1,0 +1,58 @@
+{% extends "adminBase.html" %}
+{% load i18n %}
+
+{% block head %}
+
+{% endblock %}
+{% block body_main %}
+    	<div class="col-lg-10">
+            <div id="content">
+                <center>
+                    <h1> Site Profile</h1>
+                    {% csrf_token %}
+                    <div>
+                        <div class="table-container">
+                            <table class='table table-bordered table-condensed table-striped table-vertical-center'>
+                                <thead>
+                                    <tr>
+                                        
+                                        <th>Multilogin Name</th>
+                                        <th>Phone</th>
+                                        <th>Password</th>
+                                        <th>First Name</th>
+                                        <th>Birthday</th>
+                                        <th>Verification Code</th>
+                                        <th>Note</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for site_profile in site_profiles %}
+                                <tr>
+                                    <td>{{site_profile.mlbprofile.profile_name}}</td>
+                                    <td>{{site_profile.phone.phone}}</td>
+                                    <td>{{site_profile.mlbprofile.password}}</td>
+                                    <td>{{site_profile.mlbprofile.first_name}}</td>
+                                    <td>{{site_profile.mlbprofile.birthday}}</td>
+                                    <td>{{site_profile.banned}}</td>
+                                    <td>
+                                    <form class="add-form" action="/api/admin/save/{{site_profile.id}}/" method="post">
+                                    {% csrf_token %}
+                                        <input type="text" name="note" value="{{site_profile.note}}" />
+                                        <input type="submit" value="Save" />
+                                    </form>
+                                    </td>
+                    
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </table>
+                    </div>
+                </center>
+
+            </div>
+        </div>
+{% endblock %}
+
+{% block body_footer %}{% endblock %}  

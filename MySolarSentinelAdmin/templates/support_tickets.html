@@ -1,0 +1,52 @@
+{% extends "adminBase.html" %}
+{% load i18n %}
+
+{% block head %}
+
+{% endblock %}
+{% block body_main %}
+    	<div class="col-lg-10">
+            <div id="content">
+                <form class="validate-form p-b-33 p-t-5" action="" method="post" autocomplete="off">
+                    {% csrf_token %}
+                    <div class="pull-right">
+                        <div class="searchbar">
+                            <input class="search_input" type="text" name="search_input" placeholder="Search...">
+                            <button type="submit" class="searchicon"><i class="fas fa-search" ></i></button>
+                        </div>
+                    </div>
+                </form>
+                <center>
+                    <h1 style="margin: 23px; color: #0c4f90; font-size: 46px; font-weight: bold"> SupportTickets</h1>
+                    {% csrf_token %}
+                    <div>
+                        <div class="table-container">
+                            <table id="table_viewer" class='table table-bordered table-condensed table-striped table-vertical-center table-sm'>
+                                <thead>
+                                    <tr>
+                                        <th class="th-sm">TicketOpenDate</th>
+                                        <th class="th-sm">DateSignedUp</th>
+                                        <th class="th-sm">SiteID</th>
+                                        <th class="th-sm">Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for supportTicket in supportTickets %}
+                                <tr>
+                                    <td><a href="/page/admin/supportTicket/{{supportTicket.customer.id}}/" style="color: blueviolet">{{supportTicket.TicketOpenDate}}</a></td>
+                                    <td>{{supportTicket.customer.SignUpDate}}</td>
+                                    <td>{{supportTicket.customer.SiteID}}</td>
+                                    <td>{{supportTicket.customer.FirstName}} {{supportTicket.customer.LastName}}</td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </table>
+                    </div>
+                </center>
+
+            </div>
+        </div>
+{% endblock %}
+
+{% block body_footer %}{% endblock %}  

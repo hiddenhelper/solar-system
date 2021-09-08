@@ -1,0 +1,96 @@
+{% extends "adminBase.html" %}
+{% load i18n %}
+
+{% block head %}
+
+{% endblock %}
+{% block body_main %}
+    	<div class="col-lg-10">
+            <div id="content">
+                
+                <center>
+                    {% if supportTicket.TicketStatus == "Create" %}
+                    <h2 style="margin: 40px; color: #0c4f90; font-size: 36px; font-weight: bold"> SupportTicket: {{customer.FirstName}} {{customer.LastName}}</h2>
+                    {% csrf_token %}
+                    <form class="login100-form validate-form p-b-33 p-t-5" action="/page/admin/create_ticket/{{customer.id}}/" method="post" style="margin-left: 50px">
+                        
+                        <!-- <div class="wrap-input100 input-fields" data-validate = "Enter">
+                            
+                            <input class="input100" type="text" name="solar_name" placeholder="" style="height: 30px; padding-bottom: 15px;" value="{{customer.SignUpDate}}">
+                            <span class="focus-input100" style="text-align: left">SignUpDate:</span>
+                        </div> -->
+                        <div class="wrap-input100 input-fields" data-validate = "Enter" style="height: 50px">
+                            
+                            <input class="input100" type="text" name="technician_name" placeholder="Please input Technician Name..." style="height: 30px; padding-bottom: 15px;" >
+                            <span class="focus-input100" style="text-align: left">Technician Name:</span>
+                        </div>
+                        <div class="wrap-input100 input-fields" data-validate = "Enter" style="height: 120px">
+                            
+                            <h3 style="text-align: left; margin-left: 21px;">Notes:</h3>
+                            <textarea class="input100" type="text" name="notes"
+                                style="height: auto; text-align: left; padding-left: 21px; padding-top: 28px; margin-left: 0px;" 
+                                ></textarea>
+                        </div>
+                        <p style="color:red;font-size:15px;margin-left:20px">{{ message }} </p>
+        
+                        <div class="container-login100-form-btn m-t-32 btn-area">
+                            <button class="login100-form-btn" type="submit" style="margin: 20px">Create</button>
+                        </div>
+                    </form>
+                    {% else %}
+                    <h2 style="margin: 40px; color: #0c4f90; font-size: 36px; font-weight: bold"> SupportTicket: {{customer.FirstName}} {{customer.LastName}}</h2>
+                    <form class="login100-form validate-form p-b-33 p-t-5" action="/page/admin/edit_ticket/{{customer.id}}/" method="post" style="margin-left: 50px">
+                        <div class="wrap-input100 input-fields" data-validate = "Enter" style="height: 50px">
+                            
+                            <input class="input100 ticket-input" type="text" name="technician_name" value="{{supportTicket.id}}" style="height: 30px; padding-bottom: 15px;" >
+                            <span class="focus-input100" style="text-align: left">Ticket ID:</span>
+                        </div>
+                        <div class="wrap-input100 input-fields" data-validate = "Enter" style="height: 50px">
+                            
+                            <input class="input100 ticket-input" type="text" name="technician_name" value="{{supportTicket.TicketOpenDate}}" style="height: 30px; padding-bottom: 15px;" >
+                            <span class="focus-input100" style="text-align: left">Ticket Open Date:</span>
+                            <a class="login100-form-btn" href="/page/admin/close_ticket/{{customer.id}}/" style="margin: 10px; float: right; width: 120px;">Close Ticket</a>
+                        </div>
+                        <div class="wrap-input100 input-fields" data-validate = "Enter" style="height: 50px">
+                            
+                            <input class="input100 ticket-input" type="text" name="technician_name" value="{{supportTicket.TicketStatus}}" style="width: 55%; height: 30px; padding-bottom: 15px;" >
+                            <span class="focus-input100" style="text-align: left">Ticket Status:</span>
+                            
+                        </div>
+                        <div class="wrap-input100 input-fields" data-validate = "Enter" style="height: 50px">
+                            {% if supportTicket.CustomerAcknowledged %}
+                            <input class="input100 ticket-input" type="text" name="technician_name" value="No" style="height: 30px; padding-bottom: 15px;" >
+                            {% else %}
+                            <input class="input100 ticket-input" type="text" name="technician_name" value="No" style="height: 30px; padding-bottom: 15px;" >
+                            {% endif %}
+                            <span class="focus-input100" style="text-align: left">Customer Acknowledged:</span>
+                        </div>
+                        <div class="wrap-input100 input-fields" data-validate = "Enter" style="height: 50px">
+                            
+                            <input class="input100 ticket-input" type="text" name="technician_name" value="{{supportTicket.TechnicianName}}" style="height: 30px; padding-bottom: 15px;" >
+                            <span class="focus-input100" style="text-align: left">Support Engineer:</span>
+                        </div>
+                        <div class="wrap-input100 input-fields" data-validate = "Enter" style="height: 160px">
+                            <h3 style="text-align: left; margin-left: 21px;">Notes:</h3>
+                            <textarea class="input100" type="text" name="notes"
+                                style="height: auto; text-align: left; padding-left: 21px; padding-top: 28px; margin-left: 0px;" 
+                                value="" >{{notes}}</textarea>
+                             
+                            
+                        </div>
+                        <p style="color:red;font-size:15px;margin-left:20px">{{ message }} </p>
+        
+                        <div class="container-login100-form-btn m-t-32 btn-area">
+                            <button class="login100-form-btn" type="submit" style="margin: 20px">Save Changes</button>
+                            <a class="login100-form-btn" href="/page/admin/support_tickets/" style="margin: 20px">Back</a>
+                        </div>
+                        
+                    </form>
+                    {% endif %}
+                </center>
+
+            </div>
+        </div>
+{% endblock %}
+
+{% block body_footer %}{% endblock %}  

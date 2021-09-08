@@ -1,0 +1,59 @@
+{% extends "adminBase.html" %}
+{% load i18n %}
+
+{% block head %}
+
+{% endblock %}
+{% block body_main %}
+    	<div class="col-lg-10">
+            <div id="content">
+                <form class="validate-form p-b-33 p-t-5" action="" method="post" autocomplete="off">
+                    {% csrf_token %}
+                    <div class="pull-right">
+                        <div class="searchbar">
+                            <input class="search_input" type="text" name="search_input" placeholder="Search...">
+                            <button type="submit" class="searchicon"><i class="fas fa-search" ></i></button>
+                        </div>
+                    </div>
+                </form>
+                <center>
+                    <h1 style="margin: 23px; color: #0c4f90; font-size: 46px; font-weight: bold"> Customers</h1>
+                    {% csrf_token %}
+                    <div>
+                        <div class="table-container">
+                            <table id="table_viewer" class='table table-bordered table-condensed table-striped table-vertical-center table-sm'>
+                                <thead>
+                                    <tr>
+                                        <th class="th-sm">Customer Number</th>
+                                        <th class="th-sm">DateSignUp</th>
+                                        <th class="th-sm">SiteID</th>
+                                        <th class="th-sm">Name</th>
+                                        <th class="th-sm">Email</th>
+                                        <th class="th-sm">TicketStatus</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for customer in customers %}
+                                <tr>
+                                    <td><a href="/page/admin/customer/{{customer.id}}" style="color: blueviolet">{{customer.id}}</a></td>
+                                    <td>{{customer.SignUpDate}}</td>
+                                    <td>{{customer.SiteID}}</td>
+                                    <td>{{customer.FirstName}} {{customer.LastName}}</td>
+                                    <td>{{customer.EmailAddr}}</td>
+                                    <td><a href="/page/admin/supportTicket/{{customer.id}}" style="color: blueviolet">{{customer.TicketStatus}}</a></td>
+                                    
+                                    <!-- <td><a href="/api/admin/check_profile/{{site_profile.id}}">Check</a></td> -->
+                                    
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </center>
+
+            </div>
+        </div>
+{% endblock %}
+
+{% block body_footer %}{% endblock %}  

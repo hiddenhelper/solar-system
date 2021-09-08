@@ -1,0 +1,115 @@
+{% extends "adminBase.html" %}
+{% load i18n %}
+
+{% block head %}
+
+{% endblock %}
+{% block body_main %}
+    	<div class="col-lg-10">
+            <div id="content">
+                
+                <center>
+                    <h1 style="margin: 23px; color: #0c4f90; font-size: 46px; font-weight: bold"> Customer: {{customer.FirstName}} {{customer.LastName}}</h1>
+                    
+                    <form class="login100-form validate-form p-b-33 p-t-5" action="" method="post" style="margin-left: 50px">
+                        {% csrf_token %}
+                        <div class="wrap-input100 input-fields" data-validate = "Enter">
+                            
+                            <input class="input100" type="text" name="solar_name" placeholder="" style="height: 15px" value="{{customer.id}}">
+                            <span class="focus-input100" style="text-align: left">Customer ID:</span>
+                        </div>
+                        <div class="wrap-input100 input-fields" data-validate = "Enter">
+                            
+                            <input class="input100" type="text" name="solar_name" placeholder="" style="height: 15px" value="{{customer.SignUpDate}}">
+                            <span class="focus-input100" style="text-align: left">SignUpDate:</span>
+                        </div>
+                        <div class="wrap-input100 input-fields" data-validate = "Enter">
+                            
+                            <input class="input100" type="text" name="PaymentID" placeholder="" style="height: 15px" value="{{customer.PaymentID}}">
+                            <span class="focus-input100" style="text-align: left">PaymentID:</span>
+                        </div>
+                        <div class="wrap-input100 input-fields" data-validate = "Enter">
+                            
+                            <input class="input100" type="text" name="SiteID" placeholder="" style="height: 15px" value="{{customer.SiteID}}">
+                            <span class="focus-input100" style="text-align: left">SiteID:</span>
+                        </div>
+                        <div class="wrap-input100 input-fields" data-validate = "Enter">
+                            
+                            <input class="input100" type="text" name="solar_name" placeholder="" style="height: 15px" value="{{customer.FirstName}} {{customer.LastName}}">
+                            <span class="focus-input100" style="text-align: left">Name:</span>
+                        </div>
+                        <div class="wrap-input100 input-fields" data-validate = "Enter">
+                            
+                            <input class="input100" type="text" name="solar_name" placeholder="" style="height: 15px" value="{{customer.Addr1}}">
+                            <span class="focus-input100" style="text-align: left">Addr1:</span>
+                        </div>
+                        <div class="wrap-input100 input-fields" data-validate = "Enter">
+                            
+                            <input class="input100" type="text" name="solar_name" placeholder="" style="height: 15px" value="{{customer.Addr2}}">
+                            <span class="focus-input100" style="text-align: left">Addr2:</span>
+                        </div>
+                        <div class="wrap-input100 input-fields" data-validate = "Enter">
+                            
+                            <input class="input100" type="text" name="solar_name" placeholder="" style="height: 15px" value="{{customer.State}}">
+                            <span class="focus-input100" style="text-align: left">State:</span>
+                        </div>
+                        <div class="wrap-input100 input-fields" data-validate = "Enter">
+                            
+                            <input class="input100" type="text" name="solar_name" placeholder="" style="height: 15px" value="{{customer.ZipCode}}">
+                            <span class="focus-input100" style="text-align: left">ZipCode:</span>
+                        </div>
+                        <div class="wrap-input100 input-fields" data-validate = "Enter">
+                            
+                            <input class="input100" type="text" name="CellPhone" placeholder="" style="height: 15px" value="{{customer.CellPhone}}">
+                            <span class="focus-input100" style="text-align: left">CellPhone:</span>
+                        </div>
+                        <div class="wrap-input100 input-fields" data-validate = "Enter">
+                            
+                            <input class="input100" type="text" name="EmailAddr" placeholder="" style="height: 15px" value="{{customer.EmailAddr}}">
+                            <span class="focus-input100" style="text-align: left">EmailAddr:</span>
+                        </div>
+                        <div class="wrap-input100 input-fields" data-validate = "Enter">
+                            <select name="CarrierCode" value=2 style="height: 24px; font-size: 20px; margin-left: 344px; float: left;">
+                                <option value="" selected="selected">{{carrier_code}}</option>
+                                <option value=0>Verizon</option>
+                                <option value=1>T-Mobile</option>
+                                <option value=2>AT&T</option>
+                                <option value=3>Sprint</option>
+                                <option value=4>Other</option>
+                              </select>
+                            <!-- <input class="input100" type="text" name="CarrierCode" placeholder="" style="height: 15px" value="{{carrier_code}}"> -->
+                            <span class="focus-input100" style="text-align: left">CarrierCode:</span>
+                        </div>
+                        <div class="wrap-input100 input-fields" data-validate = "Enter">
+                            
+                            <input class="input100" type="text" name="APIKey" placeholder="" style="height: 15px" value="{{customer.APIKey}}">
+                            <span class="focus-input100" style="text-align: left">APIKey:</span>
+                        </div>
+                        <div class="wrap-input100 input-fields" data-validate = "Enter">
+                            
+                            <input class="input100" type="text" name="SEUsername" placeholder="" style="height: 15px" value="{{customer.SEUsername}}">
+                            <span class="focus-input100" style="text-align: left">SEUsername:</span>
+                        </div>
+                        <div class="wrap-input100 input-fields" data-validate = "Enter">
+                            
+                            <input class="input100" type="text" name="SEPassword" placeholder="" style="height: 15px" value="{{customer.SEPassword}}">
+                            <span class="focus-input100" style="text-align: left">SEPassword:</span>
+                        </div>
+
+                        <p style="color:red;font-size:15px;margin-left:20px">{{ message }} </p>
+        
+                        <div class="container-login100-form-btn m-t-32 btn-area">
+                            <button class="login100-form-btn" type="submit" style="margin: 20px">Save Changes</button>
+                            <a class="login100-form-btn" href="/page/admin/" style="margin: 20px">Back</a>
+                        </div>
+                    
+                </form>
+
+                    
+                </center>
+
+            </div>
+        </div>
+{% endblock %}
+
+{% block body_footer %}{% endblock %}  

@@ -1,0 +1,23 @@
+#header{
+	height:100px;
+}
+.header__logo{
+	height: 70px;
+}
+.header__logo img{
+	height: 60px;
+}
+.avatar__name{
+	text-align: center;
+	/*font-size: 30px;*/
+}
+.input100{
+	text-align: center;
+}
+.input-fields{
+	height: 70px;
+}
+.focus-input100{
+	padding: 20px;
+	font-size: 20px;
+}

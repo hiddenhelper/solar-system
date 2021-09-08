@@ -1,0 +1,40 @@
+{% load bootstrap4 %}
+{% bootstrap_css %} 
+{% bootstrap_javascript jquery='full' %}
+{% load i18n %}
+<!doctype html>
+<html lang="en">
+<head>{% load static %}
+    <meta charset="utf-8">
+    <title>MySolarSentinel</title>
+    <meta content="" name="description">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="HandheldFriendly" content="true">
+    <meta content="telephone=no" name="format-detection">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ STATIC_URL }}apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="">
+    <link rel="stylesheet" href="{{ STATIC_URL }}django_tables2/themes/paleblue/css/screen.css" />
+    
+    <link rel="mask-icon" href="{{ STATIC_URL }}img/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="theme-color" content="#ffffff">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/libs.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/styles.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}datepicker/datepicker.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/distributor.css">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/main.css">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ STATIC_URL }}/MDB/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="{{ STATIC_URL }}/MDB/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="{{ STATIC_URL }}/MDB/css/style.css" rel="stylesheet">
+    <!-- MDBootstrap Datatables  -->
+    <link href="{{ STATIC_URL }}/MDB/css/addons/datatables2.min.css" rel="stylesheet">
+    <!-- MDBootstrap Datatables  -->
+    <script type="text/javascript" src="{{ STATIC_URL }}/MDB/js/addons/datatables.min.js"></script>

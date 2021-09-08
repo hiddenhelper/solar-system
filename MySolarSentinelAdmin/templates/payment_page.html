@@ -1,0 +1,49 @@
+{% extends "adminBase.html" %}
+{% load i18n %}
+
+{% block head %}
+
+{% endblock %}
+{% block body_main %}
+    	<div class="col-lg-10">
+            <div id="content">
+                <center>
+                    <h1> Payment Request</h1>
+                    {% csrf_token %}
+                    <div>
+                        <div class="table-container">
+                            <table class='table table-bordered table-condensed table-striped table-vertical-center'>
+                                <thead>
+                                    <tr>
+                                        <th>User ID</th>
+                                        <th>Venmo Tag</th>
+                                        <th>Email</th>
+                                        <th>Name</th>
+                                        <th>Total Amount</th>
+                                        <th>Request Amount</th>
+                                        <th>Pay</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for payment_item in unpaid_lists %}
+                                <tr>
+                                    <td>{{payment_item.user.id}}</td>
+                                    <td>{{payment_item.user.venmo_tag}}</td>
+                                    <td>{{payment_item.user.email}}</td>
+                                    <td>{{payment_item.user.firstname}} {{payment_item.user.lastname}}</td>
+                                    <td>{{payment_item.user.billing_amounts}}</td>
+                                    <td>{{payment_item.request_amounts}}</td>
+                                    <td><a href="/api/admin/payment_approve/{{payment_item.user.id}}">Pay</a></td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </table>
+                    </div>
+                </center>
+
+            </div>
+        </div>
+{% endblock %}
+
+{% block body_footer %}{% endblock %}  

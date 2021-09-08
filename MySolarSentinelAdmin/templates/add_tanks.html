@@ -1,0 +1,105 @@
+{% extends "distributorBase.html" %}
+{% load i18n %}
+
+{% block head %}
+
+{% endblock %}
+{% block body_main %}
+            <div class="col-lg-10">
+                <div class="main-container">
+                    <div class="row">
+                        <div id="div_messages">
+                            
+                        </div>
+                        
+<div class="container-fluid">
+
+    <div class="row">
+        <form class="login100-form validate-form p-b-33 p-t-5" action="/distributor/add_tanks/" method="post">
+                        {% csrf_token %}
+                    <div class="wrap-input100 input-fields" data-validate = "Enter tank name">
+                        
+                        <input class="input100" type="text" name="tank_name" placeholder="Tank name">
+                        <span class="focus-input100">Tank Name:</span>
+                    </div>
+
+                    <div class="wrap-input100 input-fields" data-validate = "Enter tank shape" style="height: 200px;">
+                        <div style="text-align: center;">
+                            <select id="tankshape" name="tank_shape" class="selectpicker" onchange="tank_shape_img()">
+                              <option value="1">Rectangular</option>
+                              <option value="2">Elliptical Horizontal</option>
+                              <option value="3">Vertical Round</option>
+                            </select>
+                            <img id="TankRectangular" src="{{STATIC_URL}}img/TankRectangular.png">
+                            <img id="TankEllipticalHorizontal" style="display: none;" src="{{STATIC_URL}}img/TankEllipticalHorizontal.png">
+                            <img id="TankVerticalRound" style="display: none;" src="{{STATIC_URL}}img/TankVerticalRound.png">
+                        </div>
+                        <span class="focus-input100">Shape:</span>
+                    </div>
+
+                    <div class="wrap-input100 input-fields" data-validate = "Enter height">
+                        <input class="input100" type="text" name="height" placeholder="0">
+                        <span class="focus-input100">Height:</span>
+                    </div>
+
+                    <div class="wrap-input100 input-fields" data-validate = "Enter width">
+                        <input class="input100" type="text" name="width" placeholder="0">
+                        <span class="focus-input100">Width:</span>
+                    </div>
+
+
+                    <div class="wrap-input100 input-fields" data-validate = "Enter Length">
+                        <input class="input100" type="text" name="length" placeholder="0">
+                        <span class="focus-input100">Length:</span>
+                    </div>
+
+                    <div class="wrap-input100 input-fields" data-validate = "Enter Sensor Offset">
+                        <input class="input100" type="text" name="sensor_offset" placeholder="0">
+                        <span class="focus-input100">Sensor Offset:</span>
+                    </div>
+
+                    <div class="wrap-input100 input-fields" data-validate = "Enter Bottom Outlet Height">
+                        <input class="input100" type="text" name="bottom_height" placeholder="0">
+                        <span class="focus-input100">Bottom Outlet Height:</span>
+                    </div>
+
+                    <div class="wrap-input100 input-fields" data-validate = "Enter Cap. Of Adj">
+                        <input class="input100" type="text" name="cap_adj" placeholder="0">
+                        <span class="focus-input100">Cap. Of Adj.(%):</span>
+                    </div>
+
+                    <div class="wrap-input100 input-fields" data-validate = "Enter Usable Capacity">
+                        <input class="input100" type="text" name="usable_capacity" placeholder="0">
+                        <span class="focus-input100">Usable Capacity:</span>
+                    </div>
+
+                    <div class="wrap-input100 input-fields" data-validate = "Enter IMEI">
+                        <input class="input100" type="text" name="IMEI" placeholder="0">
+                        <span class="focus-input100">IMEI:</span>
+                    </div>
+
+
+                    <p style="color:red;font-size:15px;margin-left:20px">{{ message }} </p>
+
+                    <div class="container-login100-form-btn m-t-32 btn-area">
+                        <button class="login100-form-btn" type="submit">Add</button>
+                        <a href="/distributor/index/">
+                            <p class="login100-form-btn" type="">Cacel</p>
+                        </a>
+                    </div>
+                    
+
+        </form>
+    </div>
+
+    
+</div>
+
+
+                    </div>
+                </div>
+            </div>
+
+{% endblock %}
+
+{% block body_footer %}{% endblock %}

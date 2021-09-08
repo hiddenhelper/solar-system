@@ -1,0 +1,186 @@
+        </div>
+    </div>
+</main>
+
+<!-- Modal -->
+<div id="confirm-modal" class="modal fade" role="dialog"  data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title"></h4>
+        </div>
+        <div class="modal-body question">
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-danger" id="closeButton">Cancel</button>
+            <button type="submit" class="btn btn-success" id="okButton">Confirm</button>
+        </div>
+    </div>
+</div>
+
+<!-- <script src="{{ STATIC_URL }}js/jquery.min.js"></script>
+<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+<script src="{{ STATIC_URL }}js/highcharts.js"></script>
+<script src="{{ STATIC_URL }}js/exporting.js"></script> -->
+<!-- <script src="{{ STATIC_URL }}datepicker/js/bootstrap-datepicker.js"></script> -->
+
+<script src="{{ STATIC_URL }}js/scripts.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+
+<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyAUGOfGa77GnAfbab7gUjuUk86YR8TkLIQ"  type="text/javascript"></script> -->
+
+<!-- jQuery -->
+<script type="text/javascript" src="{{ STATIC_URL }}/MDB/js/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="{{ STATIC_URL }}/MDB/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="{{ STATIC_URL }}/MDB/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="{{ STATIC_URL }}/MDB/js/mdb.min.js"></script>
+<!-- MDBootstrap Datatables  -->
+<script type="text/javascript" src="{{ STATIC_URL }}/MDB/js/addons/datatables2.min.js"></script>
+<!-- Your custom scripts (optional) -->
+
+<script type="text/javascript">
+
+
+$(function () {
+    console.log($("#table_viewer"),"==============")
+    $('#table_viewer').DataTable();
+    $('.dataTables_length').addClass('bs-select');
+
+    setCssDegForGauge();
+    function parseDjangoData(data){
+        data = data.replace(/&(l|g|quo)t;/g, function(a,b){
+                return {
+                    l   : '<',
+                    g   : '>',
+                    quo : '"'
+                }[b];
+            });
+        data = data.replace(/u'/g, '\'');
+        data = data.replace(/'/g, '\"');
+        return JSON.parse(data);
+    }
+    
+
+    // Capture change on Connection datepickers and update data
+    function changedConnectionDatepicker(){
+        var start_date = new Date($('#connection_start_date').val());
+        var end_date = new Date($('#connection_end_date').val());
+
+        start_date = start_date.getFullYear()+ '-' + start_date.getMonth() + '-' + start_date.getDate();
+        end_date = end_date.getFullYear()+ '-' + end_date.getMonth() + '-' + end_date.getDate();
+        updateConnectionData(start_date, end_date);
+    }
+
+    function updateConnectionData(start_date, end_date){
+
+        var company_id = parseDjangoData("1");
+        $.when(getConnections(company_id, start_date, end_date)).then(function(result){
+
+            result = JSON.parse(result)
+            if (result.error){
+                console.log(result.error_text);
+            }
+            var categories = result.data.categories;
+            var series = result.data.series;
+            connection_options.xAxis.categories = categories;
+            connection_options.series[0].data = series;
+            Highcharts.chart('connection-chart', connection_options);
+
+        });
+    }
+
+    // Capture change on Volume datepickers and update data
+    function changedVolumeDatepicker(){
+        var start_date = new Date($('#volume_start_date').val());
+        var end_date = new Date($('#volume_end_date').val());
+
+        start_date = start_date.getFullYear()+ '-' + start_date.getMonth() + '-' + start_date.getDate();
+        end_date = end_date.getFullYear()+ '-' + end_date.getMonth() + '-' + end_date.getDate();
+        updateVolumeData(start_date, end_date);
+    }
+
+    function updateVolumeData(start_date, end_date){
+        var company_id = parseDjangoData("1");
+        $.when(getVolumeProcessedForCompany(company_id, start_date, end_date)).then(function(result){
+            result = JSON.parse(result);
+            var data = result.data;
+            var categories = result.data.categories;
+            var series = result.data.series;
+            volume_processed_options.xAxis.categories = categories;
+            volume_processed_options.series[0].data = series;
+            Highcharts.chart('volume-chart', volume_processed_options);
+        });
+    }
+    // Initialize Volume and Connections charts with default date-range
+    updateVolumeData();
+    updateConnectionData();
+
+    // Initialize default dates and datepickers
+    var default_start_date = new Date();
+    var default_end_date = new Date();
+    default_start_date.setDate(default_start_date.getDate() - 30);
+
+    var volume_start_datepicker = $('#volume_start_date').datepicker({
+        autoclose: true
+    }).on('changeDate', function(ev){
+        changedVolumeDatepicker()
+        $('#volume_start_date').datepicker('hide');
+    });
+
+    var volume_end_datepicker = $('#volume_end_date').datepicker({
+        autoclose: true
+    }).on('changeDate', function(ev){
+        changedVolumeDatepicker()
+        $('#volume_end_date').datepicker('hide');
+    });
+
+    $('#volume_start_date_btn').on('click', function(){
+        $('#volume_start_date').datepicker('show');
+    });
+
+    $('#volume_end_date_btn').on('click', function(){
+        $('#volume_end_date').datepicker('show');
+
+    })
+
+    var connection_start_datepicker = $('#connection_start_date').datepicker({
+        autoclose: true
+    }).on('changeDate', function(ev){
+        changedConnectionDatepicker();
+        $('#connection_start_date').datepicker('hide');
+    });
+
+    var connection_end_datepicker = $('#connection_end_date').datepicker({
+        autoclose: true,
+        classes: 'asdasd'
+    }).on('changeDate', function(ev){
+        changedConnectionDatepicker();
+        $('#connection_end_date').datepicker('hide');
+    });
+
+    $('#connection_start_date_btn').on('click', function(){
+        $('#connection_start_date').datepicker('show');
+    });
+
+    $('#connection_end_date_btn').on('click', function(){
+            $('#connection_end_date').datepicker('show');
+    })
+
+    volume_start_datepicker.datepicker("setValue", default_start_date);
+    volume_end_datepicker.datepicker("setValue", default_end_date);
+    connection_start_datepicker.datepicker("setValue", default_start_date);
+    connection_end_datepicker.datepicker("setValue", default_end_date);
+    $(function () {
+      $('[data-toggle="popover"]').popover()
+    })
+});
+</script>
+
+
+</body>
+</html>
